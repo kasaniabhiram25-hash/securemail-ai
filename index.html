@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SecureMail AI is a classroom prototype demonstrating email phishing-risk explanations using local rules.">
+  <meta name="theme-color" content="#14204b">
+  <title>SecureMail AI — Email Risk Explainer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="analyzer.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+ <div class="app-shell">
+   <header class="topbar">
+     <div class="brand"><span class="brand-mark" aria-hidden="true">✉</span><span>SecureMail <b>AI</b></span></div>
+     <div class="top-right"><span class="offline-label"><span class="offline-dot"></span> Local demo</span><span class="prototype-pill">Classroom prototype</span></div>
+   </header>
+   <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="eyebrow"><span class="mini-shield">◆</span> EMAIL SAFETY ASSISTANT</div>
+        <h1 id="intro-title">Understand a suspicious email <em>before you act.</em></h1>
+        <p>Paste an email to review common warning signs, see a plain-language explanation, and decide what to do next.</p>
+        <div class="simulation-notice" role="note"><strong>How this demo works:</strong> Local keyword rules simulate an AI risk assessment. No real AI model, sender verification, URL scanning, or email account is connected. Do not use this as a security verdict.</div>
+      </section>
+      <div class="workspace">
+        <section class="panel form-panel" aria-labelledby="input-title">
+          <div class="panel-top"><div><div class="step-label">STEP 01 · SUBMIT A MESSAGE</div><h2 id="input-title">Email inspection</h2></div><span class="round-counter">1 of 2</span></div>
+          <p class="supporting">Include the sender, subject, and message body when available. Use fictional or nonconfidential messages only.</p>
+          <label for="email-input">Email content</label>
+          <textarea id="email-input" rows="12" spellcheck="false" placeholder="From: sender@example.com&#10;Subject: ...&#10;&#10;Paste the email text here..."></textarea>
+          <div class="input-footer"><span id="char-count">0 characters</span><button id="sample-btn" class="linkish" type="button">Load phishing sample</button></div>
+          <p id="validation" class="validation" role="alert" hidden></p>
+          <button id="analyze-btn" type="button" class="primary-btn"><span aria-hidden="true">◈</span> Analyze email <span class="button-arrow" aria-hidden="true">→</span></button>
+          <p id="form-status" class="form-status" aria-live="polite">Ready to inspect an email.</p>
+        </section>
+        <section class="panel result-panel" aria-labelledby="result-title">
+          <div class="panel-top"><div><div class="step-label">STEP 02 · UNDERSTAND THE RISK</div><h2 id="result-title">Your analysis</h2></div><span class="round-counter">2 of 2</span></div>
+          <div id="empty-state" class="empty-state"><div class="empty-icon" aria-hidden="true">◎</div><h3>No analysis yet</h3><p>Enter an email or load the sample, then select <strong>Analyze email</strong> to see the explanation here.</p></div>
+          <div id="result-content" class="result-content" hidden>
+            <div class="risk-band"><span class="risk-copy"><span class="risk-mini">SIMULATED RISK FLAG</span><strong id="risk-label"></strong></span><div class="score"><strong id="risk-score"></strong><small>/100</small></div></div>
+            <div class="meter" role="img" id="meter-wrap" aria-label="Demonstration rule score"><div id="meter"></div></div>
+            <p id="risk-summary" class="result-summary"></p>
+            <h3>Signals detected</h3><ul id="signals" class="signals"></ul>
+            <div class="recommendation"><div class="recommendation-title">RECOMMENDED NEXT STEP</div><p id="recommendation-text"></p></div>
+            <div class="feedback-controls"><button type="button" id="report-btn" class="outline-btn">⚑ Report suspicious</button><button type="button" id="disagree-btn" class="outline-btn">◌ Disagree</button><button type="button" id="retry-btn" class="text-btn">Edit & retry</button></div>
+            <p id="feedback-status" class="feedback-status" aria-live="polite"></p>
+            <div class="result-disclaimer">This score is a scripted classroom heuristic, <strong>not</strong> a probability, model confidence score, or indication that an email is safe.</div>
+          </div>
+        </section>
+      </div>
+   </main>
+   <footer><span>SECUREMAIL AI · VERSION 1.0</span><span>No messages are sent, uploaded, or stored by this demo.</span></footer>
+ </div>
+</body>
+</html>
